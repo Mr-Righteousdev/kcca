@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kampala Capital City Authority (KCCA) portal. Serving 1.5 million residents with citizen-centric services, trading licences, development permits, online payments, and city projects.">
-  <title>Kampala Capital City Authority (KCCA) — For a Better City</title>
+  <meta name="description" content="Contact Kampala Capital City Authority — headquarters address, toll-free helpline, office hours, and citizen feedback form.">
+  <title>Contact Us — KCCA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -71,62 +71,115 @@
 
   <main>
 
-    <section class="hero-section" id="hero">
+    <section class="section contact-section" id="contact">
       <div class="container">
-        <div class="hero-label">
-          Kampala Capital City Authority — Serving 1.5 Million Residents
-        </div>
-        <h1 class="hero-title">Welcome to the City of Kampala</h1>
-        <p class="hero-subtitle">Find services, apply online, pay fees, report issues and stay informed — all in one place.</p>
-
-        <div class="search-container">
-          <form id="search-form" class="search-wrapper" action="services.html" method="get">
-            <div class="search-input-icon">🔍</div>
-            <input type="search" class="search-control search-input" name="q" placeholder="What are you looking for? e.g. &quot;trading licence&quot;, &quot;building permit&quot;, &quot;jobs&quot;" aria-label="Search city services">
-            <button type="submit" class="search-btn">Search</button>
-          </form>
+        <div class="section-header">
+          <h2>Get in Touch</h2>
         </div>
 
-        <div class="quick-paths">
-          <h2 class="quick-paths-title">I Want To...</h2>
-          <div class="quick-paths-grid">
-            <a href="services.html?tab=licensing" class="quick-path-tile">
-              <span class="icon">🪪</span>
-              <span>Get a Trading Licence</span>
-            </a>
-            <a href="services.html?tab=planning" class="quick-path-tile">
-              <span class="icon">🏗️</span>
-              <span>Apply for a Permit</span>
-            </a>
-            <a href="services.html?tab=licensing" class="quick-path-tile">
-              <span class="icon">💳</span>
-              <span>Pay a Fee Online</span>
-            </a>
-            <a href="services.html?tab=jobs" class="quick-path-tile">
-              <span class="icon">📋</span>
-              <span>Apply for a Job</span>
-            </a>
-            <a href="services.html?tab=planning" class="quick-path-tile">
-              <span class="icon">🚨</span>
-              <span>Report an Issue</span>
-            </a>
-            <a href="news.html" class="quick-path-tile">
-              <span class="icon">📰</span>
-              <span>Read the Latest News</span>
-            </a>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">🏛️</div>
+              <div>
+                <h3 class="contact-card-title">KCCA Headquarters</h3>
+                <div class="contact-card-text">City Hall, Plot 1-3 Apollo Kaggwa Road
+                P.O. Box 7010, Kampala, Uganda</div>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">📞</div>
+              <div>
+                <h3 class="contact-card-title">Toll-Free Helpline</h3>
+                <div class="contact-card-text">0800 199 000
+                (Monday – Friday, 8:00 AM – 5:00 PM)</div>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">✉️</div>
+              <div>
+                <h3 class="contact-card-title">General Enquiries</h3>
+                <div class="contact-card-text"><a href="mailto:info@kcca.go.ug">info@kcca.go.ug</a></div>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">🕐</div>
+              <div>
+                <h3 class="contact-card-title">Office Hours</h3>
+                <div class="contact-card-text">Monday – Friday: 8:00 AM – 5:00 PM
+                Saturday – Sunday: Closed</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback-form-container">
+            <h3 class="form-title">Citizen Feedback Form</h3>
+            <p class="form-subtitle">Share your complaints, suggestions, compliments or general service enquiries.</p>
+
+            <div class="form-status-alert" id="form-status" role="alert"></div>
+
+            <form id="feedback-form" novalidate>
+              <div class="form-group">
+                <label for="feedback-name" class="form-label">Your Name</label>
+                <input type="text" id="feedback-name" name="name" class="form-control" placeholder="Enter your full name" required>
+                <span class="form-feedback" id="error-name" aria-live="polite">Name is required.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="feedback-contact" class="form-label">Phone Number or Email Address</label>
+                <input type="text" id="feedback-contact" name="contact" class="form-control" placeholder="e.g. +256700000000 or email@domain.com" required>
+                <span class="form-feedback" id="error-contact" aria-live="polite">Phone or Email is required.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="feedback-division" class="form-label">Division / Area</label>
+                <select id="feedback-division" name="division" class="form-control">
+                  <option value="" disabled selected>Select Division</option>
+                  <option value="Central">Central Division</option>
+                  <option value="Kawempe">Kawempe Division</option>
+                  <option value="Lubaga">Lubaga Division</option>
+                  <option value="Makindye">Makindye Division</option>
+                  <option value="Nakawa">Nakawa Division</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <span class="form-label">Type of Feedback</span>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Complaint" class="radio-input" checked>
+                    Complaint
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Suggestion" class="radio-input">
+                    Suggestion
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Compliment" class="radio-input">
+                    Compliment
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Enquiry" class="radio-input">
+                    Enquiry
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="feedback-message" class="form-label">Your Message</label>
+                <textarea id="feedback-message" name="message" class="form-control" placeholder="Write your message here..." required></textarea>
+                <span class="form-feedback" id="error-message" aria-live="polite">Message must be at least 10 characters long.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Feedback</button>
+            </form>
           </div>
         </div>
       </div>
     </section>
-
-    <div class="notice-strip" id="notice-strip">
-      <div class="container">
-        <div class="notice-content">
-          <span>Trading licence renewal deadline: 30 June 2026. Pay online at eCitie <a href="https://ecitie2.kcca.go.ug" target="_blank" rel="noopener noreferrer">Renew Now →</a></span>
-        </div>
-        <button class="notice-close" id="notice-close-btn" aria-label="Dismiss Announcement">✕</button>
-      </div>
-    </div>
 
   </main>
 
@@ -205,5 +258,73 @@
   </div>
 
   <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const feedbackForm = document.getElementById('feedback-form');
+      const formStatus = document.getElementById('form-status');
+
+      feedbackForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('feedback-name');
+        const contactInput = document.getElementById('feedback-contact');
+        const messageInput = document.getElementById('feedback-message');
+
+        let isValid = true;
+
+        formStatus.style.display = 'none';
+        formStatus.className = 'form-status-alert';
+
+        if (nameInput.value.trim() === '') {
+          nameInput.classList.add('is-invalid');
+          document.getElementById('error-name').style.display = 'block';
+          isValid = false;
+        } else {
+          nameInput.classList.remove('is-invalid');
+          document.getElementById('error-name').style.display = 'none';
+        }
+
+        const contactValue = contactInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\+?[0-9\s\-()]{8,15}$/;
+
+        if (contactValue === '') {
+          contactInput.classList.add('is-invalid');
+          document.getElementById('error-contact').textContent = 'Phone or Email is required.';
+          document.getElementById('error-contact').style.display = 'block';
+          isValid = false;
+        } else if (!emailRegex.test(contactValue) && !phoneRegex.test(contactValue)) {
+          contactInput.classList.add('is-invalid');
+          document.getElementById('error-contact').textContent = 'Please enter a valid phone number or email address.';
+          document.getElementById('error-contact').style.display = 'block';
+          isValid = false;
+        } else {
+          contactInput.classList.remove('is-invalid');
+          document.getElementById('error-contact').style.display = 'none';
+        }
+
+        if (messageInput.value.trim().length < 10) {
+          messageInput.classList.add('is-invalid');
+          document.getElementById('error-message').style.display = 'block';
+          isValid = false;
+        } else {
+          messageInput.classList.remove('is-invalid');
+          document.getElementById('error-message').style.display = 'none';
+        }
+
+        if (isValid) {
+          formStatus.textContent = 'Thank you. Your feedback has been received and will be reviewed within 5 working days.';
+          formStatus.classList.add('success');
+          formStatus.style.display = 'flex';
+          feedbackForm.reset();
+          formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          formStatus.textContent = 'Please check the errors in the form fields and try again.';
+          formStatus.classList.add('error');
+          formStatus.style.display = 'flex';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
