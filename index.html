@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kampala Capital City Authority (KCCA) portal. Serving 1.5 million residents with citizen-centric services, trading licences, development permits, online payments, and city projects.">
+  <title>Kampala Capital City Authority (KCCA) — For a Better City</title>
+  
+  <!-- Google Fonts: Source Serif 4 (headings) & Inter (UI/body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-primary:     #FFFFFF;
+      --bg-soft:        #F4F7F4;   /* Very light green tint — alternate sections */
+      --bg-dark:        #0A2A1A;   /* Deep forest green — footer */
+      --accent-green:   #1B6B3A;   /* KCCA primary green — nav, headings, CTAs */
+      --accent-green-l: #2E8B57;   /* Lighter green — hover states */
+      --accent-gold:    #C49A2A;   /* KCCA crest gold — accents, badges */
+      --accent-red:     #B52B2B;   /* Alerts, urgent notices */
+      --accent-blue:    #1A4B8C;   /* Links, secondary actions */
+      --text-primary:   #1A1A1A;
+      --text-muted:     #52595E;
+      --text-light:     #F4F7F4;
+      --border:         #D8E4D8;
+      --card-shadow:    rgba(27, 107, 58, 0.08);
+      --success:        #1B6B3A;
+      --warning:        #C49A2A;
+      
+      --font-headings:  'Source Serif 4', Georgia, serif;
+      --font-body:      'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-headings);
+      color: var(--accent-green);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: var(--transition-base);
+    }
+
+    a:hover {
+      color: var(--accent-green-l);
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    img, svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-soft);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-green);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-gold);
+    }
+
+    /* ==========================================================================
+       3. REUSABLE UTILITIES & COMPONENTS
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-header h2 {
+      font-size: 2.25rem;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent-gold);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      border: 2px solid transparent;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-green);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-green-l);
+      color: var(--bg-primary);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--accent-green);
+      color: var(--bg-primary);
+    }
+
+    .btn-outline-gold {
+      background-color: transparent;
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    .btn-outline-gold:hover {
+      background-color: var(--accent-gold);
+      color: var(--bg-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      font-family: var(--font-body);
+    }
+
+    .badge-gold {
+      background-color: var(--bg-soft);
+      color: var(--accent-gold);
+      border: 1px solid var(--accent-gold);
+    }
+
+    /* Screen reader only utility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* ==========================================================================
+       4. TOP BAR & NAVIGATION
+       ========================================================================== */
+    .top-bar {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-size: 0.8rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .top-bar-contact {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .top-bar-contact span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .top-bar-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .top-bar-social a {
+      color: var(--text-light);
+      opacity: 0.8;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-base);
+    }
+
+    .top-bar-social a:hover {
+      opacity: 1;
+      color: var(--accent-gold);
+    }
+
+    .header-main {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-primary);
+      border-bottom: 3px solid var(--accent-green);
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Sticky navigation scrolled state */
+    .header-main.nav-scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-main .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+      border: 2px solid var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bg-primary);
+      font-family: var(--font-headings);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-name {
+      font-family: var(--font-headings);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      line-height: 1.1;
+      max-width: 240px;
+    }
+
+    .brand-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-gold);
+      margin-top: 1px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .nav-item {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-green);
+      transition: var(--transition-base);
+    }
+
+    .nav-item:hover {
+      color: var(--accent-green);
+    }
+
+    .nav-item:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 200;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--accent-green);
+      position: relative;
+      transition: var(--transition-base);
+    }
+
+    .hamburger-btn span::before,
+    .hamburger-btn span::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 2px;
+      background-color: var(--accent-green);
+      transition: var(--transition-base);
+    }
+
+    .hamburger-btn span::before {
+      top: -8px;
+    }
+
+    .hamburger-btn span::after {
+      top: 8px;
+    }
+
+    /* Hamburger active state class */
+    .hamburger-btn.active span {
+      background-color: transparent;
+    }
+
+    .hamburger-btn.active span::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    .hamburger-btn.active span::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+
+    /* Mobile Overlay Menu */
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-dark);
+      z-index: 150;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-overlay-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .mobile-overlay-item {
+      color: var(--text-light);
+      font-family: var(--font-headings);
+      font-size: 1.75rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-base);
+    }
+
+    .mobile-overlay-item:hover {
+      color: var(--accent-gold);
+    }
+
+    .mobile-overlay-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .mobile-overlay-actions .btn {
+      width: 100%;
+      min-height: 52px;
+    }
+
+    /* ==========================================================================
+       5. HERO & SEARCH FINDER SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 4.5rem 0 3.5rem 0;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-soft) 100%);
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-body);
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      color: var(--accent-green);
+      margin-bottom: 1rem;
+      font-family: var(--font-headings);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 2.5rem auto;
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+
+    .search-container {
+      max-width: 720px;
+      margin: 0 auto 3rem auto;
+      position: relative;
+    }
+
+    .search-wrapper {
+      display: flex;
+      background: var(--bg-primary);
+      border: 2px solid var(--accent-green);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(27, 107, 58, 0.05);
+      transition: var(--transition-base);
+    }
+
+    .search-wrapper:focus-within {
+      border-color: var(--accent-gold);
+      box-shadow: 0 6px 20px rgba(196, 154, 42, 0.15);
+    }
+
+    .search-input-icon {
+      padding-left: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-primary);
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      padding: 1.25rem;
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: #A0ABA0;
+    }
+
+    .search-btn {
+      background-color: var(--accent-green);
+      color: var(--bg-primary);
+      border: none;
+      padding: 0 2rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .search-btn:hover {
+      background-color: var(--accent-green-l);
+    }
+
+    /* Quick Paths Grid */
+    .quick-paths {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .quick-paths-title {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .quick-paths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .quick-path-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-bottom: 3px solid var(--accent-green);
+      border-radius: 4px;
+      padding: 1rem;
+      min-height: 85px;
+      color: var(--accent-green);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 4px var(--card-shadow);
+      transition: var(--transition-base);
+      cursor: pointer;
+    }
+
+    .quick-path-tile span.icon {
+      font-size: 1.5rem;
+    }
+
+    .quick-path-tile:hover {
+      border-bottom-color: var(--accent-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(27, 107, 58, 0.12);
+      color: var(--accent-green-l);
+    }
+
+    /* Notice strip below hero */
+    .notice-strip {
+      background-color: var(--accent-gold);
+      color: var(--bg-dark);
+      padding: 0.85rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .notice-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      padding-right: 2rem;
+    }
+
+    .notice-content a {
+      color: var(--bg-dark);
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .notice-close {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--bg-dark);
+      font-size: 1.25rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: var(--transition-base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    .notice-close:hover {
+      opacity: 1;
+      background-color: rgba(10, 42, 26, 0.1);
+      border-radius: 50%;
+    }
+
+    /* ==========================================================================
+       6. CITIZEN SERVICES HUB
+       ========================================================================== */
+    .services-section {
+      background-color: var(--bg-primary);
+    }
+
+    .tab-bar-container {
+      overflow-x: auto;
+      white-space: nowrap;
+      margin-bottom: 3rem;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tab-bar {
+      display: inline-flex;
+      gap: 0.5rem;
+      border: 1px solid var(--border);
+      padding: 0.25rem;
+      border-radius: 6px;
+      background-color: var(--bg-soft);
+    }
+
+    .tab-btn {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border: none;
+      background: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .tab-btn:hover {
+      color: var(--accent-green);
+    }
+
+    .tab-btn.active {
+      background-color: var(--bg-primary);
+      color: var(--accent-green);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-card {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-green);
+      border-radius: 4px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px var(--card-shadow);
+      transition: var(--transition-base);
+    }
+
+    .service-card:hover {
+      border-left-color: var(--accent-gold);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(27, 107, 58, 0.12);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 0.75rem;
+      font-family: var(--font-headings);
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+    }
+
+    .service-link:hover {
+      color: var(--accent-green-l);
+    }
+
+    .services-info-panel {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background-color: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .services-info-icon {
+      font-size: 1.5rem;
+      color: var(--accent-green);
+      flex-shrink: 0;
+    }
+
+    .services-info-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* No search results view */
+    .search-no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background-color: var(--bg-soft);
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      display: none;
+    }
+
+    .search-no-results span.icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .search-no-results h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ==========================================================================
+       7. LATEST NEWS & ANNOUNCEMENTS
+       ========================================================================== */
+    .news-section {
+      background-color: var(--bg-soft);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .news-card {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-base);
+    }
+
+    .news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(27, 107, 58, 0.1);
+    }
+
+    .news-img-area {
+      height: 240px;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--accent-green) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .news-img-area svg {
+      width: 120px;
+      height: 120px;
+    }
+
+    .news-content {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .news-date {
+      color: var(--accent-gold);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+      font-family: var(--font-body);
+    }
+
+    .news-title {
+      font-size: 1.5rem;
+      color: var(--accent-green);
+      margin-bottom: 0.75rem;
+      font-family: var(--font-headings);
+      line-height: 1.3;
+    }
+
+    .news-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .news-card-featured .news-img-area {
+      height: 320px;
+    }
+
+    .news-card-featured .news-title {
+      font-size: 1.8rem;
+    }
+
+    .news-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .news-card-sidebar {
+      display: flex;
+      flex-direction: row;
+      min-height: 148px;
+    }
+
+    .news-card-sidebar .news-img-area {
+      width: 140px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .news-card-sidebar .news-img-area svg {
+      width: 60px;
+      height: 60px;
+    }
+
+    .news-card-sidebar .news-content {
+      padding: 1.25rem;
+    }
+
+    .news-card-sidebar .news-title {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .news-card-sidebar .news-excerpt {
+      display: none;
+    }
+
+    .news-footer {
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       8. CITY PROJECTS SECTION
+       ========================================================================== */
+    .projects-section {
+      background-color: var(--bg-primary);
+    }
+
+    .projects-carousel-container {
+      margin: 0 -1.5rem;
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      position: relative;
+    }
+
+    .projects-row {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-card {
+      scroll-snap-align: start;
+      flex: 0 0 320px;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: var(--transition-base);
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(27, 107, 58, 0.1);
+    }
+
+    .project-icon {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      color: var(--accent-green);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-headings);
+      line-height: 1.3;
+    }
+
+    .project-partner {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-body);
+    }
+
+    .project-link {
+      margin-top: auto;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* ==========================================================================
+       9. FAQ ACCORDION SECTION
+       ========================================================================== */
+    .faq-section {
+      background-color: var(--bg-soft);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: var(--transition-base);
+    }
+
+    .faq-summary {
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--accent-green);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none; /* Hide default arrow in Chrome */
+      user-select: none;
+    }
+
+    /* Hide default arrow in Firefox */
+    .faq-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-summary-text {
+      padding-right: 1.5rem;
+    }
+
+    .faq-icon-indicator {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      color: var(--accent-gold);
+      flex-shrink: 0;
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-content-inner {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-top: 1px solid transparent;
+    }
+
+    /* Active open states (managed by JS custom accordion helper) */
+    .faq-item.open {
+      box-shadow: 0 4px 10px var(--card-shadow);
+      border-color: var(--accent-green);
+    }
+
+    .faq-item.open .faq-icon-indicator {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.open .faq-content-inner {
+      border-top-color: var(--border);
+    }
+
+    /* ==========================================================================
+       10. CONTACT & CITIZEN FEEDBACK FORM
+       ========================================================================== */
+    .contact-section {
+      background-color: var(--bg-primary);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3.5rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    .contact-card {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      font-size: 1.75rem;
+      background-color: var(--bg-soft);
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent-green);
+      border: 1px solid var(--border);
+    }
+
+    .contact-card-title {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-card-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      white-space: pre-line;
+    }
+
+    /* Form Design */
+    .feedback-form-container {
+      background-color: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .form-title {
+      font-size: 1.75rem;
+      color: var(--accent-green);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-headings);
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: var(--transition-base);
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(27, 107, 58, 0.1);
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='%231B6B3A' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 10px top 50%;
+      padding-right: 30px;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .radio-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .radio-input {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      outline: none;
+      background-color: var(--bg-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-base);
+    }
+
+    .radio-input::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-green);
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+    }
+
+    .radio-input:checked {
+      border-color: var(--accent-green);
+    }
+
+    .radio-input:checked::before {
+      transform: scale(1);
+    }
+
+    .radio-input:focus {
+      box-shadow: 0 0 0 3px rgba(27, 107, 58, 0.1);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-feedback {
+      font-size: 0.8rem;
+      margin-top: 0.35rem;
+      display: none;
+    }
+
+    .form-feedback.error {
+      color: var(--accent-red);
+      display: block;
+    }
+
+    .form-control.is-invalid {
+      border-color: var(--accent-red);
+    }
+
+    .form-control.is-invalid:focus {
+      box-shadow: 0 0 0 3px rgba(181, 43, 43, 0.1);
+    }
+
+    .form-status-alert {
+      display: none;
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid;
+    }
+
+    .form-status-alert.success {
+      background-color: rgba(27, 107, 58, 0.08);
+      border-color: var(--success);
+      color: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .form-status-alert.error {
+      background-color: rgba(181, 43, 43, 0.08);
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* ==========================================================================
+       11. FOOTER & SUB-FOOTER
+       ========================================================================== */
+    .footer-main {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      padding: 5rem 0 3rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-brand {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-brand .brand-logo {
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-headings);
+      font-size: 1.5rem;
+      color: var(--text-light);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: rgba(244, 247, 244, 0.6);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: var(--transition-base);
+    }
+
+    .footer-social-btn:hover {
+      background-color: var(--accent-gold);
+      color: var(--bg-dark);
+      border-color: var(--accent-gold);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: rgba(244, 247, 244, 0.7);
+      font-size: 0.9rem;
+      transition: var(--transition-base);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-gold);
+      padding-left: 4px;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: rgba(244, 247, 244, 0.7);
+      line-height: 1.4;
+    }
+
+    .footer-contact-item span.icon {
+      color: var(--accent-gold);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .footer-contact-item p {
+      color: rgba(244, 247, 244, 0.7);
+      margin: 0;
+    }
+
+    /* Sub-footer strip */
+    .sub-footer {
+      background-color: #04140D; /* Darker green */
+      color: rgba(244, 247, 244, 0.4);
+      font-size: 0.8rem;
+      padding: 1.5rem 0;
+    }
+
+    .sub-footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .sub-footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .sub-footer-links a {
+      color: rgba(244, 247, 244, 0.4);
+    }
+
+    .sub-footer-links a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* ==========================================================================
+       12. RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .news-card-sidebar {
+        min-height: auto;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-main .container {
+        height: 64px;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .nav-actions .btn-outline-gold {
+        display: none; /* Hide feedback btn in inline header on small screens */
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+
+      .hero-title {
+        font-size: 2.25rem;
+      }
+
+      .quick-paths-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-header h2 {
+        font-size: 1.75rem;
+      }
+
+      .hero-title {
+        font-size: 1.85rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .search-wrapper {
+        border-radius: 4px;
+      }
+
+      .search-input {
+        padding: 0.9rem 0.75rem;
+        font-size: 0.95rem;
+      }
+
+      .search-btn {
+        padding: 0 1.25rem;
+        font-size: 0.95rem;
+      }
+
+      .quick-paths-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-path-tile {
+        min-height: 80px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .news-card-sidebar {
+        flex-direction: column;
+      }
+
+      .news-card-sidebar .news-img-area {
+        width: 100%;
+        height: 180px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .sub-footer .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .sub-footer-links {
+        justify-content: center;
+      }
+
+      .feedback-form-container {
+        padding: 1.5rem;
+      }
+
+      .radio-group {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP BAR
+       ========================================================================== -->
+  <div class="top-bar" id="top-bar">
+    <div class="container">
+      <div class="top-bar-contact">
+        <span>📞 Toll-Free: <a href="tel:0800199000" style="color: inherit; font-weight: 600;">0800 199 000</a></span>
+        <span>✉ info@kcca.go.ug</span>
+      </div>
+      <div class="top-bar-social">
+        <a href="https://facebook.com/kccaug" target="_blank" rel="noopener noreferrer" aria-label="KCCA Facebook">Facebook</a>
+        <a href="https://twitter.com/kccaug" target="_blank" rel="noopener noreferrer" aria-label="KCCA Twitter">Twitter</a>
+        <a href="https://youtube.com/kccaug" target="_blank" rel="noopener noreferrer" aria-label="KCCA YouTube">YouTube</a>
+        <a href="https://instagram.com/kccaug" target="_blank" rel="noopener noreferrer" aria-label="KCCA Instagram">Instagram</a>
+        <a href="https://flickr.com/kccaug" target="_blank" rel="noopener noreferrer" aria-label="KCCA Flickr">Flickr</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="header-main" id="header">
+    <div class="container">
+      <a href="#" class="brand" aria-label="KCCA Homepage">
+        <div class="brand-logo" aria-hidden="true">KCCA</div>
+        <div>
+          <div class="brand-name">Kampala Capital City Authority</div>
+          <div class="brand-subtitle">For a Better City</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#services" class="nav-item" data-target-tab="licensing">Get a Licence</a>
+        <a href="#services" class="nav-item" data-target-tab="planning">Apply for a Permit</a>
+        <a href="#services" class="nav-item" data-target-tab="licensing">Pay Online</a>
+        <a href="#services" class="nav-item" data-target-tab="planning">Report an Issue</a>
+        <a href="#services" class="nav-item" data-target-tab="jobs">Jobs</a>
+        <a href="#services" class="nav-item" data-target-tab="open">Tenders</a>
+        <a href="#news" class="nav-item">News</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-outline-gold">Citizen Feedback</a>
+        <button class="hamburger-btn" id="hamburger-toggle" aria-label="Toggle Navigation Menu" aria-controls="mobile-overlay-menu" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Screen Overlay Navigation -->
+  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true">
+    <nav class="mobile-overlay-menu" id="mobile-overlay-menu">
+      <a href="#services" class="mobile-overlay-item" data-target-tab="licensing">Get a Licence</a>
+      <a href="#services" class="mobile-overlay-item" data-target-tab="planning">Apply for a Permit</a>
+      <a href="#services" class="mobile-overlay-item" data-target-tab="licensing">Pay Online</a>
+      <a href="#services" class="mobile-overlay-item" data-target-tab="planning">Report an Issue</a>
+      <a href="#services" class="mobile-overlay-item" data-target-tab="jobs">Jobs</a>
+      <a href="#services" class="mobile-overlay-item" data-target-tab="open">Tenders</a>
+      <a href="#news" class="mobile-overlay-item">News</a>
+    </nav>
+    <div class="mobile-overlay-actions">
+      <a href="#contact" class="btn btn-outline-gold">Citizen Feedback</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         HERO & SERVICE FINDER
+         ========================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-label">
+          <span>🏙️</span> Kampala Capital City Authority — Serving 1.5 Million Residents
+        </div>
+        <h1 class="hero-title">Welcome to the City of Kampala</h1>
+        <p class="hero-subtitle">Find services, apply online, pay fees, report issues and stay informed — all in one place.</p>
+
+        <!-- Service Finder Search Bar -->
+        <div class="search-container">
+          <form id="search-form" class="search-wrapper" onsubmit="event.preventDefault();">
+            <div class="search-input-icon">🔍</div>
+            <input type="search" class="search-control search-input" id="service-search-input" placeholder="What are you looking for? e.g. &quot;trading licence&quot;, &quot;building permit&quot;, &quot;jobs&quot;" aria-label="Search city services">
+            <button type="submit" class="search-btn">Search</button>
+          </form>
+        </div>
+
+        <!-- Quick Paths Tiles -->
+        <div class="quick-paths">
+          <h2 class="quick-paths-title">I Want To...</h2>
+          <div class="quick-paths-grid">
+            <button class="quick-path-tile" data-scroll-to="#services" data-category="licensing">
+              <span class="icon">🪪</span>
+              <span>Get a Trading Licence</span>
+            </button>
+            <button class="quick-path-tile" data-scroll-to="#services" data-category="planning">
+              <span class="icon">🏗️</span>
+              <span>Apply for a Permit</span>
+            </button>
+            <button class="quick-path-tile" data-scroll-to="#services" data-category="licensing">
+              <span class="icon">💳</span>
+              <span>Pay a Fee Online</span>
+            </button>
+            <button class="quick-path-tile" data-scroll-to="#services" data-category="jobs">
+              <span class="icon">📋</span>
+              <span>Apply for a Job</span>
+            </button>
+            <button class="quick-path-tile" data-scroll-to="#services" data-category="planning">
+              <span class="icon">🚨</span>
+              <span>Report an Issue</span>
+            </button>
+            <button class="quick-path-tile" data-scroll-to="#news">
+              <span class="icon">📰</span>
+              <span>Read the Latest News</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dismissable Announcement notice strip -->
+    <div class="notice-strip" id="notice-strip">
+      <div class="container">
+        <div class="notice-content">
+          <span>📣 Trading licence renewal deadline: 30 June 2026. Pay online at eCitie <a href="https://ecitie2.kcca.go.ug" target="_blank" rel="noopener noreferrer">Renew Now →</a></span>
+        </div>
+        <button class="notice-close" id="notice-close-btn" aria-label="Dismiss Announcement">✕</button>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         CITIZEN SERVICES HUB
+         ========================================================================== -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Can We Help You With?</h2>
+        </div>
+
+        <!-- Tabs Filter -->
+        <div class="tab-bar-container">
+          <div class="tab-bar" role="tablist" aria-label="Services categories">
+            <button class="tab-btn active" role="tab" aria-selected="true" data-filter="all">All Services</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-filter="licensing">Licensing & Revenue</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-filter="planning">Planning & Building</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-filter="health">Health & Environment</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-filter="jobs">Jobs & Careers</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-filter="projects-tab">City Projects</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-filter="open">Open Government</button>
+          </div>
+        </div>
+
+        <!-- Service Cards Grid -->
+        <div class="services-grid" id="services-grid">
+          <!-- 1. Trading Licence -->
+          <article class="service-card" data-category="licensing" data-keywords="trading licence business register renewal shop store ecitie revenue">
+            <div class="service-icon" aria-hidden="true">🪪</div>
+            <h3 class="service-title">Trading Licence</h3>
+            <p class="service-desc">Apply for a new business trading licence or renew an existing one online through the eCitie system.</p>
+            <a href="https://ecitie2.kcca.go.ug" target="_blank" rel="noopener noreferrer" class="service-link">Apply Online →</a>
+          </article>
+
+          <!-- 2. Building / Development Permit -->
+          <article class="service-card" data-category="planning" data-keywords="building permit development construction physical planning smart approval plan structure iras">
+            <div class="service-icon" aria-hidden="true">🏗️</div>
+            <h3 class="service-title">Building / Development Permit</h3>
+            <p class="service-desc">Submit your drawings, architectural designs, and obtain structural development approvals online.</p>
+            <a href="https://kcca.iras.go.ug" target="_blank" rel="noopener noreferrer" class="service-link">Apply via Smart Permit →</a>
+          </article>
+
+          <!-- 3. Pay Fees & Rates Online -->
+          <article class="service-card" data-category="licensing" data-keywords="pay fees rates online payment tax revenue property market dues parking mobile money ecitie">
+            <div class="service-icon" aria-hidden="true">💳</div>
+            <h3 class="service-title">Pay Fees & Rates Online</h3>
+            <p class="service-desc">Securely pay business taxes, property rates, ground rent, parking, and market dues online or via mobile money.</p>
+            <a href="https://ecitie2.kcca.go.ug" target="_blank" rel="noopener noreferrer" class="service-link">Pay Now →</a>
+          </article>
+
+          <!-- 4. Track Your Document -->
+          <article class="service-card" data-category="planning" data-keywords="track document plan approval physical planning reference check status camcam">
+            <div class="service-icon" aria-hidden="true">📄</div>
+            <h3 class="service-title">Track Your Document</h3>
+            <p class="service-desc">Check the real-time status of your physical planning documents, land queries, and correspondence.</p>
+            <a href="https://camcamv.kcca.go.ug" target="_blank" rel="noopener noreferrer" class="service-link">Track Now →</a>
+          </article>
+
+          <!-- 5. Check Plan Approval Status -->
+          <article class="service-card" data-category="planning" data-keywords="check plan approval status construction building permit layout review physical planning">
+            <div class="service-icon" aria-hidden="true">✅</div>
+            <h3 class="service-title">Check Plan Approval Status</h3>
+            <p class="service-desc">Verify if your architectural or structural plans have been officially reviewed and approved by the physical planning board.</p>
+            <a href="https://www.kcca.go.ug/plan-approval" target="_blank" rel="noopener noreferrer" class="service-link">Check Status →</a>
+          </article>
+
+          <!-- 6. Job Opportunities -->
+          <article class="service-card" data-category="jobs" data-keywords="job opportunities vacancies employment careers work public service hire recruitment vacancies">
+            <div class="service-icon" aria-hidden="true">💼</div>
+            <h3 class="service-title">Job Opportunities</h3>
+            <p class="service-desc">View open civil service roles, read job descriptions, and apply for employment vacancies at City Hall.</p>
+            <a href="https://www.kcca.go.ug/employment-opportunities" target="_blank" rel="noopener noreferrer" class="service-link">View Openings →</a>
+          </article>
+
+          <!-- 7. Internship Programme -->
+          <article class="service-card" data-category="jobs" data-keywords="internship programme student graduate training attachment university learning mentorship">
+            <div class="service-icon" aria-hidden="true">🎓</div>
+            <h3 class="service-title">Internship Programme</h3>
+            <p class="service-desc">Apply for university attachments and graduate internship placements across KCCA's departments.</p>
+            <a href="https://www.kcca.go.ug/internship" target="_blank" rel="noopener noreferrer" class="service-link">Apply Now →</a>
+          </article>
+
+          <!-- 8. Report Illegal Construction -->
+          <article class="service-card" data-category="planning" data-keywords="report illegal construction unapproved building encroachment compliance zoning arcgis survey">
+            <div class="service-icon" aria-hidden="true">🚨</div>
+            <h3 class="service-title">Report Illegal Construction</h3>
+            <p class="service-desc">Submit details of unapproved buildings, structural safety hazards, or zoning violations in your area.</p>
+            <a href="https://survey123.arcgis.com/share/1135f088e21b402eb735285c1a115f85" target="_blank" rel="noopener noreferrer" class="service-link">Report →</a>
+          </article>
+
+          <!-- 9. Waste & Garbage Services -->
+          <article class="service-card" data-category="health" data-keywords="waste garbage rubbish collection trash environment clean health dump sanitation community">
+            <div class="service-icon" aria-hidden="true">🗑️</div>
+            <h3 class="service-title">Waste & Garbage Services</h3>
+            <p class="service-desc">Find schedules for solid waste collection, register with local service providers, and request community dump bins.</p>
+            <a href="https://www.kcca.go.ug/waste-management" target="_blank" rel="noopener noreferrer" class="service-link">Learn More →</a>
+          </article>
+
+          <!-- 10. Public Health Services -->
+          <article class="service-card" data-category="health" data-keywords="public health clinic vaccine immunisation hospital medical inspection disease sanitation hygiene">
+            <div class="service-icon" aria-hidden="true">🏥</div>
+            <h3 class="service-title">Public Health Services</h3>
+            <p class="service-desc">Access city health centres, vaccination schedules, clinical checkups, and sanitary business inspections.</p>
+            <a href="https://www.kcca.go.ug/Health" target="_blank" rel="noopener noreferrer" class="service-link">Learn More →</a>
+          </article>
+
+          <!-- 11. Tenders & Procurement -->
+          <article class="service-card" data-category="open" data-keywords="tenders procurement bidding supplier contract business commercial government open data">
+            <div class="service-icon" aria-hidden="true">📊</div>
+            <h3 class="service-title">Tenders & Procurement</h3>
+            <p class="service-desc">Access KCCA solicitation files, pre-qualification requirements, bidding processes, and contract awards.</p>
+            <a href="https://www.kcca.go.ug/tenders" target="_blank" rel="noopener noreferrer" class="service-link">View Tenders →</a>
+          </article>
+
+          <!-- 12. Open Government Data -->
+          <article class="service-card" data-category="open" data-keywords="open government data statistics budget reports transparency metrics publications downloads">
+            <div class="service-icon" aria-hidden="true">📂</div>
+            <h3 class="service-title">Open Government Data</h3>
+            <p class="service-desc">Read administrative budgets, statistical publications, research studies, and civic activity metrics.</p>
+            <a href="https://www.kcca.go.ug/open-gov" target="_blank" rel="noopener noreferrer" class="service-link">Explore Data →</a>
+          </article>
+
+          <!-- 13. Citizen Feedback -->
+          <article class="service-card" data-category="open" data-keywords="citizen feedback suggest complain compliment service helpline comment support public engagement">
+            <div class="service-icon" aria-hidden="true">💬</div>
+            <h3 class="service-title">Citizen Feedback</h3>
+            <p class="service-desc">File a formal customer complaint, send civic suggestions, or submit service compliments directly online.</p>
+            <a href="https://www.kcca.go.ug/citizen-feedback" target="_blank" rel="noopener noreferrer" class="service-link">Submit Feedback →</a>
+          </article>
+
+          <!-- 14. KCCA Library -->
+          <article class="service-card" data-category="jobs" data-keywords="kcca library books study reference materials research education learning community reading room">
+            <div class="service-icon" aria-hidden="true">📚</div>
+            <h3 class="service-title">KCCA Library</h3>
+            <p class="service-desc">Access public reference libraries, borrow study books, search archive collections, and utilize digital workspaces.</p>
+            <a href="https://www.kcca.go.ug/library" target="_blank" rel="noopener noreferrer" class="service-link">Visit Library →</a>
+          </article>
+
+          <!-- 15. Credit Facilities -->
+          <article class="service-card" data-category="licensing" data-keywords="credit facilities micro loans funding small business youth women empowerment local development">
+            <div class="service-icon" aria-hidden="true">💰</div>
+            <h3 class="service-title">Credit Facilities</h3>
+            <p class="service-desc">Learn about city-supported credit schemes, youth/women group funding programs, and microfinance loans.</p>
+            <a href="https://www.kcca.go.ug/credit-facilities" target="_blank" rel="noopener noreferrer" class="service-link">Learn More →</a>
+          </article>
+
+          <!-- No results placeholder -->
+          <div class="search-no-results" id="search-no-results">
+            <span class="icon" aria-hidden="true">🔍</span>
+            <h3>No matching services found</h3>
+            <p>Try searching for different terms like "licence", "permit", "payment", or "jobs".</p>
+          </div>
+        </div>
+
+        <!-- Portal Info Notice -->
+        <div class="services-info-panel">
+          <div class="services-info-icon" aria-hidden="true">ℹ️</div>
+          <div class="services-info-text">
+            Some KCCA services open in a dedicated external portal (such as eCitie or Smart Permit). All portals are official KCCA systems operating securely under verified <strong>kcca.go.ug</strong> or <strong>go.ug</strong> domains.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         LATEST NEWS & ANNOUNCEMENTS
+         ========================================================================== -->
+    <section class="section news-section" id="news">
+      <div class="container">
+        <div class="section-header">
+          <h2>Latest from City Hall</h2>
+        </div>
+
+        <div class="news-grid">
+          <!-- Featured Story (60%) -->
+          <article class="news-card news-card-featured">
+            <div class="news-img-area" aria-hidden="true">
+              <!-- Inline SVG Graphic mimicking Speaker Race -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+                <rect width="400" height="240" fill="#0A2A1A"/>
+                <circle cx="200" cy="110" r="45" fill="#1B6B3A" stroke="#C49A2A" stroke-width="3"/>
+                <path d="M150 190 C150 150, 250 150, 250 190" fill="#1B6B3A" stroke="#C49A2A" stroke-width="3"/>
+                <path d="M200 70 L200 60 M220 75 L225 65 M180 75 L175 65" stroke="#C49A2A" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="200" cy="55" r="4" fill="#C49A2A"/>
+                <circle cx="230" cy="62" r="4" fill="#C49A2A"/>
+                <circle cx="170" cy="62" r="4" fill="#C49A2A"/>
+                <text x="200" y="220" font-family="'Source Serif 4', serif" font-size="16" font-weight="bold" fill="#F4F7F4" text-anchor="middle">CITY COUNCIL SPEAKER ELECTION</text>
+              </svg>
+            </div>
+            <div class="news-content">
+              <span class="news-date">21 May 2026</span>
+              <h3 class="news-title"><a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer">Ssebuwufu Wins KCCA Speaker Race as Namazzi Secures Deputy Seat</a></h3>
+              <p class="news-excerpt">Following a highly contested election at City Hall, Councillor Ssebuwufu has emerged victorious as the newly elected KCCA Speaker, with Councillor Namazzi claiming the Deputy position.</p>
+              <a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer" class="service-link">Read More →</a>
+            </div>
+          </article>
+
+          <!-- Sidebar Stories Stacked -->
+          <div class="news-sidebar">
+            <!-- Story 2 -->
+            <article class="news-card news-card-sidebar">
+              <div class="news-img-area" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 148" fill="none">
+                  <rect width="140" height="148" fill="#1B6B3A"/>
+                  <path d="M40 90 L70 50 L100 90 Z" fill="#C49A2A"/>
+                  <rect x="62" y="90" width="16" height="20" fill="#0A2A1A"/>
+                </svg>
+              </div>
+              <div class="news-content">
+                <span class="news-date">20 May 2026</span>
+                <h3 class="news-title"><a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer">Balimwezo Assumes Office as Lord Mayor of Kampala</a></h3>
+                <a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer" class="service-link">Read More →</a>
+              </div>
+            </article>
+
+            <!-- Story 3 -->
+            <article class="news-card news-card-sidebar">
+              <div class="news-img-area" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 148" fill="none">
+                  <rect width="140" height="148" fill="#0A2A1A"/>
+                  <circle cx="70" cy="65" r="25" fill="#C49A2A"/>
+                  <path d="M40 115 C40 95, 100 95, 100 115" fill="#1B6B3A"/>
+                </svg>
+              </div>
+              <div class="news-content">
+                <span class="news-date">19 May 2026</span>
+                <h3 class="news-title"><a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer">Swearing-in Ceremony for the Lord Mayor and Lord Councillors</a></h3>
+                <a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer" class="service-link">Read More →</a>
+              </div>
+            </article>
+
+            <!-- Story 4 -->
+            <article class="news-card news-card-sidebar">
+              <div class="news-img-area" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 148" fill="none">
+                  <rect width="140" height="148" fill="#C49A2A"/>
+                  <path d="M30 40 L110 40 L110 110 L30 110 Z" fill="#0A2A1A"/>
+                  <circle cx="70" cy="75" r="15" fill="#1B6B3A"/>
+                </svg>
+              </div>
+              <div class="news-content">
+                <span class="news-date">11 May 2026</span>
+                <h3 class="news-title"><a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer">Kololo Set for Museveni Swearing-in as Seventh Term Begins</a></h3>
+                <a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer" class="service-link">Read More →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="news-footer">
+          <a href="https://www.kcca.go.ug/news" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View All News →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CITY PROJECTS
+         ========================================================================== -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2>Building a Better Kampala</h2>
+        </div>
+
+        <div class="projects-carousel-container">
+          <div class="projects-row" id="projects-row" role="region" aria-label="City Projects Showcase">
+            <!-- 1 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">🛣️</div>
+              <h3 class="project-title">Kampala Flyover Project</h3>
+              <div class="project-partner">Partner: UNRA</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+
+            <!-- 2 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">🏙️</div>
+              <h3 class="project-title">Africa Smart Towns Network (ASToN)</h3>
+              <div class="project-partner">Partner: EU</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+
+            <!-- 3 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">🏥</div>
+              <h3 class="project-title">KCCA/CDC Urban Health Project</h3>
+              <div class="project-partner">Partner: CDC</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+
+            <!-- 4 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">🚦</div>
+              <h3 class="project-title">JICA Road Safety Campaign</h3>
+              <div class="project-partner">Partner: JICA</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+
+            <!-- 5 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">🌿</div>
+              <h3 class="project-title">Climate Change Programme</h3>
+              <div class="project-partner">Partner: KCCA</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+
+            <!-- 6 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">🚰</div>
+              <h3 class="project-title">City-Wide Inclusive Sanitation (CWIS)</h3>
+              <div class="project-partner">Partner: KCCA</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+
+            <!-- 7 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">♀️</div>
+              <h3 class="project-title">Girls Empowering Girls (GEG)</h3>
+              <div class="project-partner">Partner: KCCA</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+
+            <!-- 8 -->
+            <div class="project-card">
+              <div class="project-icon" aria-hidden="true">🗺️</div>
+              <h3 class="project-title">Kampala Roads Rehabilitation (KCRRP)</h3>
+              <div class="project-partner">Partner: KCCA/World Bank</div>
+              <a href="https://www.kcca.go.ug/projects" target="_blank" rel="noopener noreferrer" class="project-link">Learn More →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FAQ ACCORDION
+         ========================================================================== -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2>Common Questions</h2>
+        </div>
+
+        <!-- Tabs Filter -->
+        <div class="tab-bar-container">
+          <div class="tab-bar" role="tablist" aria-label="FAQ categories">
+            <button class="tab-btn active" role="tab" aria-selected="true" data-faq-filter="all">All</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-faq-filter="licensing">Licensing</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-faq-filter="permits">Permits & Planning</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-faq-filter="payments">Payments</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-faq-filter="jobs">Jobs</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-faq-filter="reporting">Reporting</button>
+          </div>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-accordion" id="faq-accordion">
+            <!-- Q1: Licensing -->
+            <details class="faq-item" data-faq-category="licensing">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">How do I apply for a new trading licence?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  Apply online via the eCitie portal at <a href="https://ecitie2.kcca.go.ug" target="_blank" rel="noopener noreferrer">ecitie2.kcca.go.ug</a>. You will need your National Identification Number (NIN), registered business name, physical layout/address, and proof of premises occupancy. Registration fees depend on your specific business classification.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q2: Licensing -->
+            <details class="faq-item" data-faq-category="licensing">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">When is the trading licence renewal deadline?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  Licences must be renewed by 31 March each year. Late renewals attract a penalty surcharge. You can renew securely online at <a href="https://ecitie2.kcca.go.ug" target="_blank" rel="noopener noreferrer">ecitie2.kcca.go.ug</a> at any time to avoid cues and penalties.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q3: Permits & Planning -->
+            <details class="faq-item" data-faq-category="permits">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">How do I apply for a building or development permit?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  Submit your proposal files through the Smart Permit portal at <a href="https://kcca.iras.go.ug" target="_blank" rel="noopener noreferrer">kcca.iras.go.ug</a>. You will need certified architectural drawings prepared by a registered architect. Letters or physical appeals should be formally addressed to the Director of Physical Planning, KCCA, P.O. Box 7010, Kampala.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q4: Permits & Planning -->
+            <details class="faq-item" data-faq-category="permits">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">Where can I find a registered architect?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  You can verify and contact licensed design professionals through the Architect's Registration Board of Uganda located at Plot 1B Kira Road (Kalamu House), or the Uganda Society of Architects at Plot 9 Agip House, Kampala Road.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q5: Permits & Planning -->
+            <details class="faq-item" data-faq-category="permits">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">How do I track my submitted plans?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  Track your submitted documents and reviews at the document tracker portal <a href="https://camcamv.kcca.go.ug" target="_blank" rel="noopener noreferrer">camcamv.kcca.go.ug</a> by keying in your formal application reference code.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q6: Payments -->
+            <details class="faq-item" data-faq-category="payments">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">What fees can I pay online?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  Trading licence fees, city parking fee bookings, market stall dues, land property rates, and ground rent can all be settled securely on <a href="https://ecitie2.kcca.go.ug" target="_blank" rel="noopener noreferrer">ecitie2.kcca.go.ug</a>. Mobile Money (MTN/Airtel) and major credit/debit cards are accepted.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q7: Payments -->
+            <details class="faq-item" data-faq-category="payments">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">Where are KCCA's physical payment offices?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  Revenue counters are open at KCCA Headquarters, City Hall, Plot 1-3 Apollo Kaggwa Road, Kampala. Office operating hours are Monday to Friday, 8:00 AM – 5:00 PM.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q8: Jobs -->
+            <details class="faq-item" data-faq-category="jobs">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">How do I apply for a job at KCCA?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  All active public administration openings are published at <a href="https://www.kcca.go.ug/employment-opportunities" target="_blank" rel="noopener noreferrer">kcca.go.ug/employment-opportunities</a>. Applications are processed entirely online. KCCA does not accept walk-in resumes or physical folders.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q9: Jobs -->
+            <details class="faq-item" data-faq-category="jobs">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">Does KCCA offer internships?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  Yes, KCCA runs a structured attachment program. Eligible students can apply and review intakes at <a href="https://www.kcca.go.ug/internship" target="_blank" rel="noopener noreferrer">kcca.go.ug/internship</a>.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q10: Reporting -->
+            <details class="faq-item" data-faq-category="reporting">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">How do I report an illegal construction?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  You can submit layout coordinates and violation photos on the KCCA ArcGIS survey portal, or contact the control division directly via the toll-free line: 0800 199 000.
+                </div>
+              </div>
+            </details>
+
+            <!-- Q11: Reporting -->
+            <details class="faq-item" data-faq-category="reporting">
+              <summary class="faq-summary">
+                <span class="faq-summary-text">How do I give feedback about a KCCA service?</span>
+                <span class="faq-icon-indicator" aria-hidden="true">▼</span>
+              </summary>
+              <div class="faq-content">
+                <div class="faq-content-inner">
+                  You can file official feedback directly using our website contact form below or visit <a href="https://www.kcca.go.ug/citizen-feedback" target="_blank" rel="noopener noreferrer">kcca.go.ug/citizen-feedback</a>. Emails can also be dispatched to <a href="mailto:info@kcca.go.ug">info@kcca.go.ug</a>.
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT & CITIZEN FEEDBACK FORM
+         ========================================================================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get in Touch</h2>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Details (Left) -->
+          <div class="contact-info">
+            <!-- 1 -->
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">🏛️</div>
+              <div>
+                <h3 class="contact-card-title">KCCA Headquarters</h3>
+                <div class="contact-card-text">City Hall, Plot 1-3 Apollo Kaggwa Road
+                P.O. Box 7010, Kampala, Uganda</div>
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">📞</div>
+              <div>
+                <h3 class="contact-card-title">Toll-Free Helpline</h3>
+                <div class="contact-card-text">0800 199 000
+                (Monday – Friday, 8:00 AM – 5:00 PM)</div>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">✉️</div>
+              <div>
+                <h3 class="contact-card-title">General Enquiries</h3>
+                <div class="contact-card-text"><a href="mailto:info@kcca.go.ug">info@kcca.go.ug</a></div>
+              </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="contact-card">
+              <div class="contact-icon" aria-hidden="true">🕐</div>
+              <div>
+                <h3 class="contact-card-title">Office Hours</h3>
+                <div class="contact-card-text">Monday – Friday: 8:00 AM – 5:00 PM
+                Saturday – Sunday: Closed</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feedback Form (Right) -->
+          <div class="feedback-form-container">
+            <h3 class="form-title">Citizen Feedback Form</h3>
+            <p class="form-subtitle">Share your complaints, suggestions, compliments or general service enquiries.</p>
+
+            <div class="form-status-alert" id="form-status" role="alert"></div>
+
+            <form id="feedback-form" novalidate>
+              <!-- Name -->
+              <div class="form-group">
+                <label for="feedback-name" class="form-label">Your Name</label>
+                <input type="text" id="feedback-name" name="name" class="form-control" placeholder="Enter your full name" required>
+                <span class="form-feedback" id="error-name" aria-live="polite">Name is required.</span>
+              </div>
+
+              <!-- Contact (Phone/Email) -->
+              <div class="form-group">
+                <label for="feedback-contact" class="form-label">Phone Number or Email Address</label>
+                <input type="text" id="feedback-contact" name="contact" class="form-control" placeholder="e.g. +256700000000 or email@domain.com" required>
+                <span class="form-feedback" id="error-contact" aria-live="polite">Phone or Email is required.</span>
+              </div>
+
+              <!-- Division -->
+              <div class="form-group">
+                <label for="feedback-division" class="form-label">Division / Area</label>
+                <select id="feedback-division" name="division" class="form-control">
+                  <option value="" disabled selected>Select Division</option>
+                  <option value="Central">Central Division</option>
+                  <option value="Kawempe">Kawempe Division</option>
+                  <option value="Lubaga">Lubaga Division</option>
+                  <option value="Makindye">Makindye Division</option>
+                  <option value="Nakawa">Nakawa Division</option>
+                </select>
+              </div>
+
+              <!-- Feedback Type -->
+              <div class="form-group">
+                <span class="form-label">Type of Feedback</span>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Complaint" class="radio-input" checked>
+                    Complaint
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Suggestion" class="radio-input">
+                    Suggestion
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Compliment" class="radio-input">
+                    Compliment
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="feedback_type" value="Enquiry" class="radio-input">
+                    Enquiry
+                  </label>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="feedback-message" class="form-label">Your Message</label>
+                <textarea id="feedback-message" name="message" class="form-control" placeholder="Write your message here..." required></textarea>
+                <span class="form-feedback" id="error-message" aria-live="polite">Message must be at least 10 characters long.</span>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Feedback</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER & SUB-FOOTER
+       ========================================================================== -->
+  <footer class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Col (1) -->
+        <div class="footer-col footer-brand">
+          <div class="brand-logo" aria-hidden="true" style="margin-bottom: 1.5rem;">KCCA</div>
+          <h2 class="footer-brand-name">Kampala Capital City Authority</h2>
+          <p class="footer-tagline">"For a Better City"</p>
+          <div class="footer-social-links">
+            <a href="https://facebook.com/kccaug" class="footer-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Fb</a>
+            <a href="https://twitter.com/kccaug" class="footer-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Tw</a>
+            <a href="https://youtube.com/kccaug" class="footer-social-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube">Yt</a>
+            <a href="https://instagram.com/kccaug" class="footer-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Ig</a>
+            <a href="https://flickr.com/kccaug" class="footer-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Flickr">Fr</a>
+          </div>
+        </div>
+
+        <!-- Citizen Services Col (2) -->
+        <div class="footer-col">
+          <h3 class="footer-col-title">Citizen Services</h3>
+          <div class="footer-links">
+            <a href="#services" data-target-tab="licensing">Trading Licence</a>
+            <a href="#services" data-target-tab="planning">Building Permit</a>
+            <a href="#services" data-target-tab="licensing">Pay Online</a>
+            <a href="#services" data-target-tab="planning">Report Issue</a>
+            <a href="#services" data-target-tab="planning">Track Document</a>
+            <a href="#contact">Citizen Feedback</a>
+          </div>
+        </div>
+
+        <!-- Authority Col (3) -->
+        <div class="footer-col">
+          <h3 class="footer-col-title">The Authority</h3>
+          <div class="footer-links">
+            <a href="https://www.kcca.go.ug/about-us" target="_blank" rel="noopener noreferrer">About KCCA</a>
+            <a href="https://www.kcca.go.ug/directorates" target="_blank" rel="noopener noreferrer">Directorates</a>
+            <a href="#projects">Projects</a>
+            <a href="https://www.kcca.go.ug/open-gov" target="_blank" rel="noopener noreferrer">Open Government</a>
+            <a href="https://www.kcca.go.ug/tenders" target="_blank" rel="noopener noreferrer">Tenders</a>
+            <a href="https://www.kcca.go.ug/employment-opportunities" target="_blank" rel="noopener noreferrer">Careers</a>
+          </div>
+        </div>
+
+        <!-- Contact Col (4) -->
+        <div class="footer-col">
+          <h3 class="footer-col-title">Contact Us</h3>
+          <div class="footer-contact-item">
+            <span class="icon" aria-hidden="true">📍</span>
+            <p>City Hall, Plot 1-3 Apollo Kaggwa Road, Kampala, Uganda</p>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon" aria-hidden="true">📞</span>
+            <p>Toll-Free: 0800 199 000</p>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon" aria-hidden="true">✉️</span>
+            <p>info@kcca.go.ug</p>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon" aria-hidden="true">🕐</span>
+            <p>Mon - Fri: 8:00 AM - 5:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sub Footer strip -->
+  <div class="sub-footer">
+    <div class="container">
+      <div>&copy; 2026 Kampala Capital City Authority. Government of Uganda. All rights reserved.</div>
+      <div class="sub-footer-links">
+        <a href="https://www.kcca.go.ug/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="https://www.kcca.go.ug/accessibility" target="_blank" rel="noopener noreferrer">Accessibility</a>
+        <a href="https://www.kcca.go.ug/sitemap" target="_blank" rel="noopener noreferrer">Site Map</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      /* ==========================================
+         A. DOM SELECTIONS
+         ========================================== */
+      const header = document.getElementById('header');
+      const hamburgerToggle = document.getElementById('hamburger-toggle');
+      const mobileOverlay = document.getElementById('mobile-overlay');
+      const serviceSearchInput = document.getElementById('service-search-input');
+      const searchForm = document.getElementById('search-form');
+      const serviceCards = document.querySelectorAll('.service-card');
+      const searchNoResults = document.getElementById('search-no-results');
+      const noticeStrip = document.getElementById('notice-strip');
+      const noticeCloseBtn = document.getElementById('notice-close-btn');
+      
+      const tabBtns = document.querySelectorAll('[data-filter]');
+      const faqTabBtns = document.querySelectorAll('[data-faq-filter]');
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      const feedbackForm = document.getElementById('feedback-form');
+      const formStatus = document.getElementById('form-status');
+      
+      /* ==========================================
+         B. NAVIGATION SCROLL SHADOW
+         ========================================== */
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          header.classList.add('nav-scrolled');
+        } else {
+          header.classList.remove('nav-scrolled');
+        }
+      });
+
+      /* ==========================================
+         C. HAMBURGER OVERLAY TOGGLE
+         ========================================== */
+      function toggleMobileMenu() {
+        const isOpen = mobileOverlay.classList.contains('open');
+        if (isOpen) {
+          mobileOverlay.classList.remove('open');
+          hamburgerToggle.classList.remove('active');
+          hamburgerToggle.setAttribute('aria-expanded', 'false');
+          mobileOverlay.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        } else {
+          mobileOverlay.classList.add('open');
+          hamburgerToggle.classList.add('active');
+          hamburgerToggle.setAttribute('aria-expanded', 'true');
+          mobileOverlay.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      hamburgerToggle.addEventListener('click', toggleMobileMenu);
+
+      // Close menu on selecting item
+      const overlayLinks = document.querySelectorAll('.mobile-overlay-item, .mobile-overlay-actions a');
+      overlayLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (mobileOverlay.classList.contains('open')) {
+            toggleMobileMenu();
+          }
+        });
+      });
+
+      /* ==========================================
+         D. DISMISSABLE NOTICE STRIP
+         ========================================== */
+      // Check if notice has been dismissed this session
+      if (sessionStorage.getItem('kcca-notice-dismissed') === 'true') {
+        noticeStrip.style.display = 'none';
+      }
+
+      noticeCloseBtn.addEventListener('click', () => {
+        noticeStrip.style.display = 'none';
+        sessionStorage.setItem('kcca-notice-dismissed', 'true');
+      });
+
+      /* ==========================================
+         E. SERVICE LIVE SEARCH & KEYPRESS FILTER
+         ========================================== */
+      function filterServices() {
+        const query = serviceSearchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        // Reset tab highlight to 'All Services' when searching
+        if (query.length > 0) {
+          tabBtns.forEach(btn => btn.classList.remove('active'));
+          document.querySelector('[data-filter="all"]').classList.add('active');
+        }
+
+        serviceCards.forEach(card => {
+          const title = card.querySelector('.service-title').textContent.toLowerCase();
+          const desc = card.querySelector('.service-desc').textContent.toLowerCase();
+          const keywords = card.getAttribute('data-keywords').toLowerCase();
+
+          if (title.includes(query) || desc.includes(query) || keywords.includes(query)) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (visibleCount === 0) {
+          searchNoResults.style.display = 'block';
+        } else {
+          searchNoResults.style.display = 'none';
+        }
+      }
+
+      serviceSearchInput.addEventListener('input', filterServices);
+
+      /* ==========================================
+         F. CATEGORY TAB FILTERS (SERVICES)
+         ========================================== */
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Reset search bar when using tabs
+          serviceSearchInput.value = '';
+          searchNoResults.style.display = 'none';
+
+          // Set active classes
+          tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          const category = btn.getAttribute('data-filter');
+
+          // Special case: City Projects tab.
+          // Since Projects are in `#projects`, we smooth-scroll to it and reset tabs to "All Services"
+          if (category === 'projects-tab') {
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+              btn.classList.remove('active');
+              btn.setAttribute('aria-selected', 'false');
+              document.querySelector('[data-filter="all"]').classList.add('active');
+              document.querySelector('[data-filter="all"]').setAttribute('aria-selected', 'true');
+              serviceCards.forEach(c => c.style.display = 'flex');
+            }, 800);
+            return;
+          }
+
+          // Normal Category Filter
+          serviceCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      /* ==========================================
+         G. FAQ ACCORDION TRANSITIONS & TAB FILTERS
+         ========================================== */
+      // 1. FAQ Tab Filters
+      faqTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Set active classes
+          faqTabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          const category = btn.getAttribute('data-faq-filter');
+
+          faqItems.forEach(item => {
+            // Close details first
+            item.removeAttribute('open');
+            item.classList.remove('open');
+            item.querySelector('.faq-content').style.maxHeight = '0';
+
+            if (category === 'all' || item.getAttribute('data-faq-category') === category) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 2. Details toggle smooth animation logic
+      faqItems.forEach(item => {
+        const summary = item.querySelector('.faq-summary');
+        const content = item.querySelector('.faq-content');
+
+        summary.addEventListener('click', (e) => {
+          // Prevent browser default details toggle action
+          e.preventDefault();
+          
+          const isOpen = item.hasAttribute('open');
+
+          if (isOpen) {
+            // Smoothly close
+            content.style.maxHeight = '0px';
+            item.classList.remove('open');
+            setTimeout(() => {
+              item.removeAttribute('open');
+            }, 300); // match CSS duration
+          } else {
+            // Open immediately for layout
+            item.setAttribute('open', '');
+            item.classList.add('open');
+            
+            // Calculate scroll height for dynamic expand
+            const scrollHeight = content.scrollHeight;
+            content.style.maxHeight = scrollHeight + 'px';
+            
+            // Close other open details in current filter for clean accordion UX
+            faqItems.forEach(otherItem => {
+              if (otherItem !== item && otherItem.hasAttribute('open')) {
+                otherItem.querySelector('.faq-content').style.maxHeight = '0px';
+                otherItem.classList.remove('open');
+                setTimeout(() => {
+                  otherItem.removeAttribute('open');
+                }, 300);
+              }
+            });
+          }
+        });
+      });
+
+      /* ==========================================
+         H. FORM VALIDATION & CITIZEN FEEDBACK
+         ========================================== */
+      feedbackForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Form field selections
+        const nameInput = document.getElementById('feedback-name');
+        const contactInput = document.getElementById('feedback-contact');
+        const messageInput = document.getElementById('feedback-message');
+        
+        let isValid = true;
+        
+        // Hide previous status alert
+        formStatus.style.display = 'none';
+        formStatus.className = 'form-status-alert';
+        
+        // 1. Name validation
+        if (nameInput.value.trim() === '') {
+          nameInput.classList.add('is-invalid');
+          document.getElementById('error-name').style.display = 'block';
+          isValid = false;
+        } else {
+          nameInput.classList.remove('is-invalid');
+          document.getElementById('error-name').style.display = 'none';
+        }
+        
+        // 2. Contact validation (phone or email)
+        const contactValue = contactInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\+?[0-9\s\-()]{8,15}$/;
+        
+        if (contactValue === '') {
+          contactInput.classList.add('is-invalid');
+          document.getElementById('error-contact').textContent = 'Phone or Email is required.';
+          document.getElementById('error-contact').style.display = 'block';
+          isValid = false;
+        } else if (!emailRegex.test(contactValue) && !phoneRegex.test(contactValue)) {
+          contactInput.classList.add('is-invalid');
+          document.getElementById('error-contact').textContent = 'Please enter a valid phone number or email address.';
+          document.getElementById('error-contact').style.display = 'block';
+          isValid = false;
+        } else {
+          contactInput.classList.remove('is-invalid');
+          document.getElementById('error-contact').style.display = 'none';
+        }
+        
+        // 3. Message validation (min 10 chars)
+        if (messageInput.value.trim().length < 10) {
+          messageInput.classList.add('is-invalid');
+          document.getElementById('error-message').style.display = 'block';
+          isValid = false;
+        } else {
+          messageInput.classList.remove('is-invalid');
+          document.getElementById('error-message').style.display = 'none';
+        }
+        
+        // If Valid, simulate successful submission
+        if (isValid) {
+          formStatus.textContent = '✓ Thank you. Your feedback has been received and will be reviewed within 5 working days.';
+          formStatus.classList.add('success');
+          formStatus.style.display = 'flex';
+          
+          // Reset form values
+          feedbackForm.reset();
+          
+          // Smooth scroll to status alert
+          formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          formStatus.textContent = '⚠️ Please check the errors in the form fields and try again.';
+          formStatus.classList.add('error');
+          formStatus.style.display = 'flex';
+        }
+      });
+
+      /* ==========================================
+         I. ANCHOR CROSS-LINKING & NAVIGATION HELPER
+         ========================================= */
+      // Allow header links / quick paths to filter services category and scroll there
+      const linksWithTabAction = document.querySelectorAll('[data-target-tab], [data-category], [data-scroll-to]');
+      
+      linksWithTabAction.forEach(element => {
+        element.addEventListener('click', (e) => {
+          const targetSelector = element.getAttribute('data-scroll-to') || element.getAttribute('href');
+          
+          if (targetSelector && targetSelector.startsWith('#')) {
+            const targetSection = document.querySelector(targetSelector);
+            if (targetSection) {
+              e.preventDefault();
+              
+              // Scroll to section
+              targetSection.scrollIntoView({ behavior: 'smooth' });
+              
+              // Trigger tab filter selection if relevant
+              const tabFilterVal = element.getAttribute('data-target-tab') || element.getAttribute('data-category');
+              if (tabFilterVal) {
+                const targetBtn = document.querySelector(`[data-filter="${tabFilterVal}"]`);
+                if (targetBtn) {
+                  // Simulate click to trigger filter logic
+                  setTimeout(() => {
+                    targetBtn.click();
+                  }, 400);
+                }
+              }
+            }
+          }
+        });
+      });
+      
+    });
+  </script>
+</body>
+</html>
